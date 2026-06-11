@@ -1,4 +1,4 @@
-FROM nodejs:18-alpine 
+FROM node:18-alpine
 WORKDIR /app
 
 RUN groupadd -r appuser && useradd -r -g appuser appuser
