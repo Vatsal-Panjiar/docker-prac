@@ -32,7 +32,7 @@ jobs:
 
       - name: Login to ACR
         run: |
-          az acr login --name $ACR_NAME
+          az acr login --name acr1vatsal
 
       - name: Build Docker Image
         run: |
