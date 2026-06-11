@@ -1,7 +1,7 @@
 FROM node:18-alpine
 WORKDIR /app
 
-RUN groupadd -r appuser && useradd -r -g appuser appuser
+RUN addgroup -S appuser && adduser -S appuser -G appuser
 
 COPY . .
 
