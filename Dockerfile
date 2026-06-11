@@ -10,7 +10,8 @@ RUN npm install
 
 COPY . .
 
-RUN chown -R appuser:appuser /app
+RUN mkdir -p /app/node_modules/.cache && \
+    chown -R appuser:appuser /app
 
 USER appuser
 
