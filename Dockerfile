@@ -1,8 +1,7 @@
-FROM node:18-alpine
+FROM node:18-alpine as installer
 
 WORKDIR /app
 
-RUN addgroup -S appuser && adduser -S appuser -G appuser
 
 COPY package*.json ./
 
@@ -10,11 +9,11 @@ RUN npm install
 
 COPY . .
 
-RUN mkdir -p /app/node_modules/.cache && \
-    chown -R appuser:appuser /app
+RUN npm run build
 
-USER appuser
+FROM nginx:latest AS deployer
 
+COPY --from=installer /app/build /usr/share/nginx/html
 EXPOSE 3000
 
 CMD ["npm", "start"]
